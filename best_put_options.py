@@ -51,7 +51,7 @@ def pick_best_put_options():
     return sorted(puts, key=lambda e: -e['margin_normalized'])
 
 
-def pick_best_put_option_quote_at_expiration(symbol):
+def pick_best_put_option_quote_at_expiration(symbol, expiration, limit=1):
     def filter_out_expiration(call_expiration):
         if not expiration:
             return call_expiration[:7] in set(['2019-08'])
@@ -72,7 +72,7 @@ def pick_best_put_option_quote_at_expiration(symbol):
             by_expiration[put['expiration']].append(put)
 
         for expiration, puts in by_expiration.items():
-            good_put = sorted(puts, key=lambda e: -e['margin'])[0]
+            good_put = sorted(puts, key=lambda e: -e['margin'])[:limit]
             best_by_expiration[expiration] = good_put
     except Exception as e:
         pass

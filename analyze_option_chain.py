@@ -14,8 +14,7 @@ def analyze_chains(symbol):
 		call_margins = []
 		for call in chain['chain']['call']:
 			# the option chain in practice does not show strike price too far away
-			if 1.0 * abs(qt['bid'] - call['strike']) / qt['bid'] > 0.4:
-				continue
+			#if 1.0 * abs(qt['bid'] - call['strike']) / qt['bid'] > 0.4: continue
 			call_margin = round((qt['bid'] - call['strike']) - call['ask'], 3)
 			if call_margin > 0.5:
 				continue
@@ -28,8 +27,7 @@ def analyze_chains(symbol):
 		put_margins = []
 		for put in chain['chain']['put']:
 			# the option chain in practice does not show strike price too far away
-			if 1.0 * abs(call['strike'] - qt['ask']) / qt['ask'] > 0.4:
-				continue
+			#if 1.0 * abs(call['strike'] - qt['ask']) / qt['ask'] > 0.4: continue
 			put_margin = round((-qt['ask'] + put['strike']) - put['ask'], 3)
 			if put_margin > 0.5:
 				continue
