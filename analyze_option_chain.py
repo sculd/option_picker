@@ -67,4 +67,3 @@ def analyze_chains(symbol):
 		res['all_puts'] = sorted(puts, key=lambda e: -e['margin'])[:],
 
 	return res['expirations'], res['all_calls'], res['all_puts'],
-
