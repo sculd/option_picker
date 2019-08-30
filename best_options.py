@@ -72,6 +72,9 @@ def pick_best_call_options():
 
 			print('getting quote for symbol: %s' % (symbol))
 			qt = quote.get_quote(symbol)
+			week_52_relative = quote.get_week_52_relative(symbol)
+			if week_52_relative < 0.5:
+				continue
 			price = (qt['bid'] + qt['ask']) / 2.0
 			quote_spread = qt['ask'] - qt['bid']
 			for good_call in good_calls:
@@ -110,6 +113,9 @@ def pick_best_put_options():
 
 			print('getting quote for symbol: %s' % (symbol))
 			qt = quote.get_quote(symbol)
+			week_52_relative = quote.get_week_52_relative(symbol)
+			if week_52_relative > 0.5:
+				continue
 			price = (qt['bid'] + qt['ask']) / 2.0
 			quote_spread = qt['ask'] - qt['bid']
 			for good_put in good_puts:

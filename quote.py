@@ -41,3 +41,14 @@ def get_quote(symbol):
 
     return res
 
+
+def get_week_52_relative(symbol):
+    qt = get_quote(symbol)
+    if qt is None: 
+        return None
+    p = 1.0 * (qt['ask'] + qt['bid']) / 2.0
+    week_52_spread = qt['week_52_high'] - qt['week_52_low']
+    low_to_p = p - qt['week_52_low']
+    return 1.0 * low_to_p / week_52_spread
+
+
