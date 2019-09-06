@@ -1,12 +1,6 @@
-from pprint import pprint
-import copy
-import quote
-import statistics
-import best_options
+from quotes import quote
 from best_options import filter_out_expiration
-import option_expiration
-import option_chains
-import analyze_option_chain
+from option_chains import analyze_option_chain
 from collections import defaultdict
 
 

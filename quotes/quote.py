@@ -1,12 +1,14 @@
-import requests, os, pickle
+import requests, os, pickle, time
 import util.common
 
-_ACCESS_TOKEN = os.environ['TRADIER_ACCESS_TOKEN']
+# util.common.API_KEY_WORLDTRADINGDATA
+
 _FILENAME_SAVED_QUOTES = 'quotes.pickle'
 
 _QUOTE_PATH = '/v1/markets/quotes?symbols={symbol}'
 
 _request_cnt = 0
+
 
 def get_quote(symbol):
     global _request_cnt
@@ -27,9 +29,9 @@ def get_quote(symbol):
         with open(_FILENAME_SAVED_QUOTES, 'wb') as handle:
             pickle.dump(quotes_loaded, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-    response = requests.get(util.common.URL_BASE + _QUOTE_PATH.format(**param_option),
+    response = requests.get(util.common.URL_BASE_TRADIER + _QUOTE_PATH.format(**param_option),
         data={},
-        headers=util.common.get_auth_header()
+        headers=util.common.get_auth_header_tradier()
     )
 
     json_response = response.json()
@@ -50,5 +52,3 @@ def get_week_52_relative(symbol):
     week_52_spread = qt['week_52_high'] - qt['week_52_low']
     low_to_p = p - qt['week_52_low']
     return 1.0 * low_to_p / week_52_spread
-
-

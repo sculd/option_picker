@@ -1,10 +1,16 @@
 import requests, os
 
-_ACCESS_TOKEN = os.environ['TRADIER_ACCESS_TOKEN']
+_ACCESS_TOKEN_TRADIER = os.environ['TRADIER_ACCESS_TOKEN']
 
 _URL_BASE = 'https://sandbox.tradier.com'
 #_URL_BASE = 'https://api.tradier.com'
 _AUTH_PATH = '/v1/oauth/accesstoken'
+
+
+# https://www.worldtradingdata.com/download/history
+
+# bmUSs9Rj9QOLr8FtQGiB4Y2FTcV3vm2suN5FsRAS
+
 
 '''
 response = requests.post(_URL_BASE + _AUTH_PATH,
@@ -29,7 +35,7 @@ response = requests.get(_URL_BASE + _QUOTE_PATH,
     data={
     	},
     headers={
-	    "Authorization":"Bearer " + _ACCESS_TOKEN, 
+	    "Authorization":"Bearer " + _ACCESS_TOKEN_TRADIER,
 	    'Accept': 'application/json'
     }
 )
@@ -52,7 +58,7 @@ response = requests.get(_URL_BASE + _OPTION_CHAINS_PATH.format(**param_option),
     data={
     	},
     headers={
-	    "Authorization":"Bearer " + _ACCESS_TOKEN, 
+	    "Authorization":"Bearer " + _ACCESS_TOKEN_TRADIER,
 	    'Accept': 'application/json'
     }
 )

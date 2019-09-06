@@ -1,7 +1,6 @@
 import requests, os
 import util.common
 
-_ACCESS_TOKEN = os.environ['TRADIER_ACCESS_TOKEN']
 
 _OPTION_EXPIRATION_PATH = '/v1/markets/options/expirations?symbol={symbol}&includeAllRoots=true&strikes=true'
 
@@ -9,9 +8,9 @@ _OPTION_EXPIRATION_PATH = '/v1/markets/options/expirations?symbol={symbol}&inclu
 def get_option_expiration(symbol):
 	param_option={'symbol': symbol}
 
-	response = requests.get(util.common.URL_BASE + _OPTION_EXPIRATION_PATH.format(**param_option),
+	response = requests.get(util.common.URL_BASE_TRADIER + _OPTION_EXPIRATION_PATH.format(**param_option),
 	    data={},
-	    headers=util.common.get_auth_header()
+	    headers=util.common.get_auth_header_tradier()
 	)
 
 	json_response = response.json()

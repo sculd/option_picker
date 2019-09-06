@@ -1,8 +1,7 @@
 import requests, os, pickle, time
 import util.common
-import option_expiration
+from option_chains import option_expiration
 
-_ACCESS_TOKEN = os.environ['TRADIER_ACCESS_TOKEN']
 _FILENAME_SAVED_OPTION_CHAINS = 'option_chains.pickle'
 
 _OPTION_CHAINS_PATH = '/v1/markets/options/chains?symbol={symbol}&expiration={expiration}'
@@ -22,9 +21,9 @@ def _request_option_chain_for_expiration(symbol, expiration):
         'expiration': expiration
     }
 
-    response = requests.get(util.common.URL_BASE + _OPTION_CHAINS_PATH.format(**param_option),
+    response = requests.get(util.common.URL_BASE_TRADIER + _OPTION_CHAINS_PATH.format(**param_option),
         data={},
-        headers=util.common.get_auth_header()
+        headers=util.common.get_auth_header_tradier()
     )
     print('option chain request for symbol: %s, expiration: %s, response: %d' % (symbol, expiration, response.status_code))
     respoonse_js = response.json()

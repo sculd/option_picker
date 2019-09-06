@@ -1,6 +1,7 @@
 import copy
-import quote
-import option_chains
+from quotes import quote
+from option_chains import option_chains
+
 
 def analyze_chains(symbol):
 	res = {

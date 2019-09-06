@@ -1,11 +1,6 @@
-from pprint import pprint
-import copy
-import quote
-import statistics
-import option_expiration
-import option_chains
-import analyze_option_chain
-from collections import defaultdict
+from quotes import quote
+from option_chains import analyze_option_chain
+
 
 def filter_out_expiration(expiration):
 	return expiration[:4] in set(['2019']) # or expiration[:7] in set(['2020-01', '2020-03'])

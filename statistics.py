@@ -1,8 +1,6 @@
 import requests, os
 import util.common
 
-_ACCESS_TOKEN = os.environ['TRADIER_ACCESS_TOKEN']
-
 # not available in sandbox
 _QUOTE_PATH = '/beta/markets/fundamentals/statistics?symbols={symbol}'
 
@@ -10,9 +8,9 @@ _QUOTE_PATH = '/beta/markets/fundamentals/statistics?symbols={symbol}'
 def get_statistics(symbol):
 	param_option={'symbol': symbol}
 
-	response = requests.get(util.common.URL_BASE + _QUOTE_PATH.format(**param_option),
+	response = requests.get(util.common.URL_BASE_TRADIER + _QUOTE_PATH.format(**param_option),
 	    data={},
-	    headers=util.common.get_auth_header()
+	    headers=util.common.get_auth_header_tradier()
 	)
 
 	json_response = response.json()
