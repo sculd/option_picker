@@ -53,6 +53,12 @@ def pick_best_options():
 
 
 
+if __name__ == '__main__':
+	from pprint import pprint
+	bests = pick_best_options()
+	print('**********')
+	print('bests')
+	pprint(bests[:10])
 
 
 

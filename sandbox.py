@@ -29,7 +29,7 @@ pprint(best_puts[:10])
 #'''
 
 #'''
-symbol = 'CBOE'
+symbol = 'LXRX'
 #option_chains.update_option_chain(symbol)
 best_call_quotes = best_call_options.pick_best_call_option_quote(symbol)
 print('**********')

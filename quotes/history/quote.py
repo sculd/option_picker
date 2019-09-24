@@ -17,7 +17,7 @@ _request_cnt_alphavantage = 0
 def download_histories_csv(start_date, end_date):
     # _FILENAME_HISTORY_CSV
     with open(_FILENAME_HISTORY_CSV, 'w') as outfile:
-        outfile.write('date,symbol,close,volumn\n')
+        outfile.write('date,close,open,high,low,volume,symbol\n')
 
         for symbol in open('snp100.sample.txt', 'r'):
             symbol = symbol.strip()
@@ -58,7 +58,8 @@ def download_histories_csv(start_date, end_date):
             data = res['dataset']['data']
             out_lines = []
             for data_for_date in data:
-                out_lines.append('%s,%s,%s,%s\n' % (data_for_date[0], symbol, data_for_date[4], data_for_date[5]))
+                date_str, close, open_, high, low, volume = data_for_date[0], data_for_date[4], data_for_date[1], data_for_date[2], data_for_date[3], data_for_date[5]
+                out_lines.append('{date_str},{close},{open},{high},{low},{volume},{symbol}\n'.format(date_str=date_str, close=close, open=open_, high=high, low=low, volume=volume, symbol=symbol))
             outfile.writelines(out_lines)
 
 

@@ -77,3 +77,12 @@ def pick_best_call_option_quote_at_expiration(symbol, expiration, limit=1):
 def pick_best_call_option_quote(symbol):
     return pick_best_call_option_quote_at_expiration(symbol, None)
 
+
+
+
+if __name__ == '__main__':
+    from pprint import pprint
+    best_calls = pick_best_call_options()
+    pprint('**********')
+    pprint('best_calls')
+    pprint(best_calls[:10])

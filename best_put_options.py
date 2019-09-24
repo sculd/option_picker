@@ -76,3 +76,13 @@ def pick_best_put_option_quote_at_expiration(symbol, expiration, limit=1):
 
 def pick_best_put_option_quote(symbol):
     return pick_best_put_option_quote_at_expiration(symbol, None)
+
+
+
+
+if __name__ == '__main__':
+    from pprint import pprint
+    best_puts = pick_best_put_options()
+    pprint('**********')
+    pprint('best_puts')
+    pprint(best_puts[:10])
