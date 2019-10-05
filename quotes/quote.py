@@ -35,6 +35,15 @@ def get_quote(symbol, force_update = False):
     )
 
     json_response = response.json()
+    if 'quotes' not in json_response:
+        print('quotes not present')
+        print(json_response)
+        return {}
+    if 'quote' not in json_response['quotes']:
+        print('quote not present in quotes')
+        print(json_response)
+        return {}
+
     res = json_response['quotes']['quote']
 
     quotes_loaded[symbol] = res
@@ -55,6 +64,6 @@ def get_week_52_relative(symbol):
 
 
 def update_quote(symbol):
+    print('updating quote for {symbol}'.format(symbol=symbol))
     return get_quote(symbol, force_update=True)
-
 
