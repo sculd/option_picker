@@ -78,11 +78,21 @@ def pick_best_put_option_quote(symbol):
     return pick_best_put_option_quote_at_expiration(symbol, None)
 
 
-
-
+'''
 if __name__ == '__main__':
     from pprint import pprint
     best_puts = pick_best_put_options()
     pprint('**********')
     pprint('best_puts')
     pprint(best_puts[:10])
+'''
+
+import argparse, pprint
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-s", "--symbol", type=str, default='GOOG', help="symbol to update the chain for")
+    args = parser.parse_args()
+
+    pprint.pprint(pick_best_put_option_quote(args.symbol))
+

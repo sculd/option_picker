@@ -51,14 +51,9 @@ def pick_best_options():
 
 	return sorted(options, key=lambda e: e['thresholds_gap_normalized'])
 
-
-
 if __name__ == '__main__':
 	from pprint import pprint
 	bests = pick_best_options()
 	print('**********')
 	print('bests')
 	pprint(bests[:10])
-
-
-
