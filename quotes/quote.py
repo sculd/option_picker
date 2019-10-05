@@ -10,13 +10,13 @@ _QUOTE_PATH = '/v1/markets/quotes?symbols={symbol}'
 _request_cnt = 0
 
 
-def get_quote(symbol):
+def get_quote(symbol, force_update = False):
     global _request_cnt
     quotes_loaded = {}
     try:
         with open(_FILENAME_SAVED_QUOTES, 'rb') as handle:
             quotes_loaded.update(pickle.load(handle))
-            if symbol in quotes_loaded:
+            if not force_update and symbol in quotes_loaded:
                 return quotes_loaded[symbol]
     except Exception as e:
         pass
@@ -52,3 +52,9 @@ def get_week_52_relative(symbol):
     week_52_spread = qt['week_52_high'] - qt['week_52_low']
     low_to_p = p - qt['week_52_low']
     return 1.0 * low_to_p / week_52_spread
+
+
+def update_quote(symbol):
+    return get_quote(symbol, force_update=True)
+
+
